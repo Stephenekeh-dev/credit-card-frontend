@@ -25,12 +25,15 @@
 }
 
 @media (max-width: 768px) {
+     .desc {
+    width:90%;
+     }
    .content .disc h1{
         text-align: justify;
        
         color:#333;
         line-height: o.8;
-        font-size: 0.7rem;
+        font-size: 1rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
           
