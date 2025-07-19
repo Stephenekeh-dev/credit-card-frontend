@@ -1,0 +1,23 @@
+<h2>Verify Token</h2>
+
+<form [formGroup]="verifyForm" (ngSubmit)="verifyToken()">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Token</mat-label>
+    <input matInput formControlName="token" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Card Number</mat-label>
+    <input matInput formControlName="cardNumber" required />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+      Verify
+    </button>
+    <button mat-button (click)="close()">Cancel</button>
+  </div>
+</form>
+
+<div *ngIf="result" class="success-msg">{{ result }}</div>
+<div *ngIf="error" class="error-msg">{{ error }}</div>

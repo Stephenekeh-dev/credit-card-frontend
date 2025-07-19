@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+  <div class="profile-column">
+    <img
+      *ngIf="userInfo?.profile_photo"
+      [src]="userInfo.profile_photo"
+      alt="Profile Photo"
+      class="profile-photo"
+    />
+    <button mat-stroked-button color="warn" (click)="logout()">Logout</button>
+  </div>
+
+  <div class="info-column">
+    <h2>Welcome, {{ userInfo?.first_name }} {{ userInfo?.last_name }}</h2>
+
+    <section class="account-info">
+      <p><strong>Email:</strong> {{ userInfo?.email }}</p>
+      <p><strong>Account Number:</strong> {{ userInfo?.account_number }}</p>
+      <p><strong>Balance:</strong> ${{ balance }}</p>
+    </section>
+
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openGenerateTokenDialog()">Generate Token</button>
+      <button mat-raised-button color="accent" (click)="openDepositMoneyDialog()">Deposit Money</button>
+      <button mat-raised-button color="warn" (click)="openMakeTransactionDialog()">Make Transaction</button>
+    </div>
+  </div>
+</div>
+
+
+    
+      <h3>Recent Transactions</h3>
+      <table mat-table [dataSource]="recentTransactions" class="mat-elevation-z8">
+        <ng-container matColumnDef="token">
+          <th mat-header-cell *matHeaderCellDef>Token</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.token }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.amount }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.status }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="timestamp">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.timestamp | date:'short' }}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="['token', 'amount', 'status', 'timestamp']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['token', 'amount', 'status', 'timestamp']"></tr>
+      </table>
+    </div>
+    
+  

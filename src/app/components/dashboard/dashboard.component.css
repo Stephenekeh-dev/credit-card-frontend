@@ -1,0 +1,81 @@
+.dashboard-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  .account-info p {
+    margin: 6px 0;
+    font-size: 16px;
+  }
+  
+  .action-buttons {
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .profile-photo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-photo {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #3f51b5;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-photo {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #3f51b5;
+}
+
+.info-column {
+  flex: 1;
+}
+
+.account-info p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.action-buttons {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

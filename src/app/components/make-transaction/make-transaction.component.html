@@ -1,0 +1,28 @@
+<h2>Make a Transaction</h2>
+
+<form [formGroup]="transactionForm" (ngSubmit)="submitFakeTransaction()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" [disabled]="true" />
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Enter Token</mat-label>
+    <input matInput formControlName="token" placeholder="Token" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" formControlName="amount" placeholder="Transaction Amount" />
+  </mat-form-field>
+
+  <div class="button-group">
+    <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid">
+      Submit
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="close()">
+      Close
+    </button>
+  </div>
+</form>

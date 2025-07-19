@@ -1,0 +1,22 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  .success-msg {
+    margin-top: 16px;
+    color: green;
+  }
+  
+  .error-msg {
+    margin-top: 16px;
+    color: red;
+  }
+  

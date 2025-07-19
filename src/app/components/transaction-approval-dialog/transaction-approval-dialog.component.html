@@ -1,0 +1,18 @@
+<h2>Transaction {{ data.success ? 'Approved' : 'Declined' }}</h2>
+
+<p [ngClass]="{ success: data.success, error: !data.success }">
+  {{ data.message }}
+</p>
+
+<div *ngIf="data.transaction && data.success">
+  <h3>Transaction Details</h3>
+  <ul>
+    <li><strong>Amount:</strong> {{ data.transaction.amount }}</li>
+    <li><strong>Status:</strong> {{ data.transaction.status }}</li>
+    <li><strong>Token:</strong> {{ data.transaction.token }}</li>
+  </ul>
+</div>
+
+<div class="actions">
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
+</div>

@@ -1,0 +1,55 @@
+.registration-form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .snack-success {
+    background-color: #4caf50; /* green */
+    color: white;
+  }
+  .snack-error {
+    background-color: #f44336; /* red */
+    color: white;
+  }
+  .snack-warn {
+    background-color: #ff9800; /* orange */
+    color: white;
+  }
+  .file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+}
+
+.file-upload-wrapper label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.file-upload-wrapper input[type="file"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-family: inherit;
+}
+
+.file-upload-wrapper input[type="file"]::file-selector-button {
+  background: #3f51b5;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.file-upload-wrapper input[type="file"]::file-selector-button:hover {
+  background-color: #303f9f;
+}

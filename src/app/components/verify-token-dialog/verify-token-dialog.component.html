@@ -1,0 +1,38 @@
+<h2>Verify Token</h2>
+
+<form [formGroup]="verifyForm" (ngSubmit)="submitVerification()">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Token</mat-label>
+    <input matInput formControlName="token" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Card Number</mat-label>
+    <input matInput formControlName="cardNumber" />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="verifying">Verify</button>
+    <button mat-button type="button" (click)="close()">Cancel</button>
+  </div>
+  <!-- Only show after successful verification -->
+<div *ngIf="resultSuccess" class="actions">
+  <button mat-raised-button color="accent" (click)="openTransactionApproval()">Make Transaction</button>
+</div>
+
+</form>
+
+<div *ngIf="resultMessage" [ngClass]="{ success: resultSuccess, error: !resultSuccess }" class="result-msg">
+  {{ resultMessage }}
+</div>
+
+<!-- Display decrypted card details after verification -->
+<div *ngIf="resultSuccess && cardDetails">
+  <div class="card-details">
+    <p><strong>Card Number:</strong> {{ cardDetails.card_number }}</p>
+    <p><strong>CVV:</strong> {{ cardDetails.cvv }}</p>
+    <p><strong>Expiry Date:</strong> {{ cardDetails.expiry_date }}</p>
+    <p><strong>Card Type:</strong> {{ cardDetails.card_type }}</p>
+    <p><strong>Account Number:</strong> {{ cardDetails.account_number }}</p>
+  </div>
+</div>

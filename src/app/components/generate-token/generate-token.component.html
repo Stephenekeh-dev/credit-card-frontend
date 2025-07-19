@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Generate Token</h2>
+
+<form [formGroup]="tokenForm" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Card Number</mat-label>
+    <input matInput formControlName="card_number" type="text" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>CVV</mat-label>
+    <input matInput formControlName="cvv" type="password" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Expiry Date</mat-label>
+    <input matInput formControlName="expiry_date" type="month" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Card Type</mat-label>
+    <mat-select formControlName="card_type">
+      <mat-option value="Visa">Visa</mat-option>
+      <mat-option value="Mastercard">Mastercard</mat-option>
+      <mat-option value="Verve">Verve</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Account Number</mat-label>
+    <input matInput formControlName="account_number" type="text" required />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Generating...' : 'Generate Token' }}
+    </button>
+    <button mat-icon-button (click)="closeDialog()" class="close-button" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</form>

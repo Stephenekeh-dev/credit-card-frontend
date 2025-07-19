@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Deposit Money</h2>
+
+<form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" formControlName="amount" placeholder="Enter amount" />
+    <mat-error *ngIf="depositForm.get('amount')?.hasError('required')">
+      Amount is required
+    </mat-error>
+    <mat-error *ngIf="depositForm.get('amount')?.hasError('min')">
+      Amount must be greater than zero
+    </mat-error>
+  </mat-form-field>
+
+  <div class="flex justify-end items-center mt-4">
+    <button mat-raised-button color="primary" type="submit" [disabled]="isLoading || depositForm.invalid">
+      <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+      <span *ngIf="!isLoading">Deposit</span>
+    </button>
+  </div>
+</form>
+

@@ -1,0 +1,19 @@
+<h2>Approve Transaction</h2>
+
+<form [formGroup]="approvalForm" (ngSubmit)="submitApproval()">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Token</mat-label>
+    <input matInput formControlName="token" readonly />
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput formControlName="amount" />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="submitting">Submit</button>
+    <button mat-button type="button" (click)="close()">Cancel</button>
+  </div>
+</form>
+

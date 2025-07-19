@@ -1,0 +1,16 @@
+<div class="result-dialog">
+  <h2>{{ data.status === 'success' ? 'Success' : 'Error' }}</h2>
+  <p>{{ data.message }}</p>
+
+  <div *ngIf="data.token">
+    <p><strong>Generated Token:</strong></p>
+    <mat-form-field appearance="fill">
+      <input matInput [value]="data.token" >
+    </mat-form-field>
+  </div>
+
+  <div class="actions">
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button *ngIf="data.token" (click)="proceedToVerify()">Verify</button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px; /* Add spacing between buttons */
+}
+
+.result-msg {
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.card-details {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.card-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.card-details strong {
+  font-weight: bold;
+}

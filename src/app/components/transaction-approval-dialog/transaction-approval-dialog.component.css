@@ -1,0 +1,15 @@
+.success {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    text-align: right;
+  }
+  

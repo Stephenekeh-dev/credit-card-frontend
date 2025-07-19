@@ -1,0 +1,16 @@
+.w-full {
+    width: 100%;
+  }
+  .flex {
+    display: flex;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  

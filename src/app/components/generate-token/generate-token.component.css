@@ -1,0 +1,30 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .token-result {
+    margin-top: 20px;
+    background-color: #e8f5e9;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  
