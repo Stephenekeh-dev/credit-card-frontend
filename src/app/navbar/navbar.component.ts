@@ -32,7 +32,7 @@ export class NavbarComponent {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  // 👇 Automatically close sidenav if clicked outside on mobile
+  //  Automatically close sidenav if clicked outside on mobile
   @HostListener('document:click', ['$event'])
   closeSidebarOnOutsideClick(event: Event) {
     const clickedElement = event.target as HTMLElement;
