@@ -1,7 +1,7 @@
 .content {
     padding-top: 0;
     width:100%;
-    height:70vh;
+    height:50vh;
     display:flex;
    
     
@@ -32,8 +32,8 @@
         text-align: justify;
        
         color:#333;
-        line-height: o.8;
-        font-size: 1.1rem;
+        line-height: 1.0;
+        font-size: 1.2rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
           

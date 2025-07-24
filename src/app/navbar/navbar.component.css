@@ -11,6 +11,12 @@
   .nav-links {
     display: flex;
   }
+  .active-link {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+  color: #ffeb3b; /* optional: bright highlight */
+}
+
   
   .nav-links a {
     margin-left: 20px;
@@ -28,8 +34,8 @@
   
     .drawer-container {
       position: fixed;
-      width: 40%;
-      height: 25%;
+      width: 30%;
+      height: 26%;
       top: 0;
       z-index: 1000;
     }

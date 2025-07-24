@@ -31,6 +31,7 @@ export class NavbarComponent {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+ 
 
   //  Automatically close sidenav if clicked outside on mobile
   @HostListener('document:click', ['$event'])

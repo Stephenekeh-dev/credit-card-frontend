@@ -1,22 +1,21 @@
 <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="toggleSidebar()" class="menu-icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-  
-    <span class="nav-links">
-      <a mat-button routerLink="/">Home</a>
-      <a mat-button routerLink="/register">Register</a>
-      <a mat-button routerLink="/login">Login</a>
-    </span>
-  </mat-toolbar>
-  
-  <mat-sidenav-container class="drawer-container" *ngIf="isSidebarOpen">
-    <mat-sidenav mode="over" opened (closedStart)="isSidebarOpen = false">
-      <mat-nav-list>
-        <a mat-list-item routerLink="/" (click)="toggleSidebar()">Home</a>
-        <a mat-list-item routerLink="/register" (click)="toggleSidebar()">Register</a>
-        <a mat-list-item routerLink="/login" (click)="toggleSidebar()">Login</a>
-      </mat-nav-list>
-    </mat-sidenav>
-  </mat-sidenav-container>
-  
+  <button mat-icon-button (click)="toggleSidebar()" class="menu-icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="nav-links">
+    <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a mat-button routerLink="/register" routerLinkActive="active-link">Register</a>
+    <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container class="drawer-container" *ngIf="isSidebarOpen">
+  <mat-sidenav mode="over" opened (closedStart)="isSidebarOpen = false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleSidebar()">Home</a>
+      <a mat-list-item routerLink="/register" routerLinkActive="active-link" (click)="toggleSidebar()">Register</a>
+      <a mat-list-item routerLink="/login" routerLinkActive="active-link" (click)="toggleSidebar()">Login</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
