@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmailValidationService } from '../../email-validation.service'; 
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -25,7 +28,8 @@ import { AuthService } from '../../auth.service';  // Import AuthService
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+     MatProgressSpinnerModule 
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -33,12 +37,15 @@ import { AuthService } from '../../auth.service';  // Import AuthService
 export class RegisterComponent {
   registrationForm: FormGroup;
   profileImageFile: File | null = null;
+  loading: boolean = false;
+
   
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,  // Inject AuthService
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private emailValidationService: EmailValidationService
   ) {
     this.registrationForm = this.fb.group({
       first_name: ['', Validators.required],
@@ -58,44 +65,67 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit() {
+ onSubmit() {
   if (this.registrationForm.valid) {
-    const formDataRaw = this.registrationForm.value;
+    const email = this.registrationForm.get('email')?.value;
 
-    // ✅ Format date before appending
-    formDataRaw.dob = this.formatDate(formDataRaw.dob);
+    this.loading = true;
 
-    // ✅ Convert to FormData for file upload
-    const formData = new FormData();
-    for (const key in formDataRaw) {
-      if (formDataRaw.hasOwnProperty(key)) {
-        formData.append(key, formDataRaw[key]);
-      }
-    }
+    //  Step 1: Verify the email using AbstractAPI
+    this.emailValidationService.validateEmail(email).subscribe(
+      (result) => {
+        console.log('AbstractAPI email validation result:', result);
+        const isDeliverable = result?.deliverability?.toUpperCase() === 'DELIVERABLE';
+        const isDisposable = result?.is_disposable_email?.value === true;
+        if (!isDeliverable || isDisposable) {
+          this.snackBar.open('Please enter a valid email adress', 'Close', {
+            duration: 6000,
+            panelClass: 'snack-warn',
+          });
+          this.loading = false;
+          return;
+        }
 
-    // ✅ Append profile photo if selected
-    if (this.profileImageFile) {
-      formData.append('profile_photo', this.profileImageFile);
-    }
+        // ✅ Step 2: Proceed with registration if email is valid
+        const formDataRaw = this.registrationForm.value;
+        formDataRaw.dob = this.formatDate(formDataRaw.dob);
 
-    // ✅ Send request using AuthService
-    this.authService.register(formData).subscribe(
-      (response) => {
-        console.log('Registration successful', response);
-        this.snackBar.open('Registration successful!', 'Close', {
-          duration: 3000,
-          panelClass: 'snack-success',
-        });
+        const formData = new FormData();
+        for (const key in formDataRaw) {
+          if (formDataRaw.hasOwnProperty(key)) {
+            formData.append(key, formDataRaw[key]);
+          }
+        }
 
-        this.registrationForm.reset();
-        this.router.navigate(['/login']);
+        if (this.profileImageFile) {
+          formData.append('profile_photo', this.profileImageFile);
+        }
+
+        this.authService.register(formData).subscribe(
+          (response) => {
+            this.snackBar.open('Registration successful!', 'Close', {
+              duration: 3000,
+              panelClass: 'snack-success',
+            });
+            this.registrationForm.reset();
+            this.router.navigate(['/login']);
+            this.loading = false;
+          },
+          (error) => {
+            this.snackBar.open('Registration failed. Please try again.', 'Close', {
+              duration: 3000,
+              panelClass: 'snack-error',
+            });
+            this.loading = false;
+          }
+        );
       },
       (error) => {
-        console.error('Registration failed', error);
-        this.snackBar.open('Registration failed. Please try again.', 'Close', {
+        this.snackBar.open('Failed to validate email. Please try again.', 'Close', {
           duration: 3000,
           panelClass: 'snack-error',
         });
+        this.loading = false;
       }
     );
   } else {
@@ -105,6 +135,7 @@ export class RegisterComponent {
     });
   }
 }
+
 onFileSelected(event: any) {
   if (event.target.files && event.target.files.length > 0) {
     this.profileImageFile = event.target.files[0];

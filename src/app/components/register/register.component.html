@@ -74,8 +74,14 @@
   <input type="file" id="profilePhoto" (change)="onFileSelected($event)" accept="image/*">
 </div>
   
-    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
-      Register
-    </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid || loading">
+  <ng-container *ngIf="!loading; else loadingTemplate">
+    Register
+  </ng-container>
+  <ng-template #loadingTemplate>
+    <mat-spinner diameter="24" strokeWidth="3"></mat-spinner>
+  </ng-template>
+</button>
+
   </form>
   
